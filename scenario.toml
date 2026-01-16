@@ -8,7 +8,7 @@ env = {
 }
 
 [[participants]]
-agentbeats_id = "PURPLE_AGENT_ID"
+agentbeats_id = "019bc478-3ed8-7871-8341-d905ff27a587"
 name = "netheal-solver-gpt5-high"
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",

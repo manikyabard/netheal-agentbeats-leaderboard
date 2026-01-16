@@ -96,7 +96,7 @@ PARTICIPANT_TEMPLATE = """  {name}:
     image: {image}
     platform: linux/amd64
     container_name: {name}
-    command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
+    command: {command}
     environment:{env}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
@@ -167,6 +167,20 @@ def format_env_vars(env_dict: dict[str, Any]) -> str:
     return "\n" + "\n".join(lines)
 
 
+def format_command(name: str, solver: str | None = None) -> str:
+    command = [
+        "--host",
+        "0.0.0.0",
+        "--port",
+        str(DEFAULT_PORT),
+        "--card-url",
+        f"http://{name}:{DEFAULT_PORT}",
+    ]
+    if solver:
+        command.extend(["--solver", solver])
+    return "[" + ", ".join(f"\"{value}\"" for value in command) + "]"
+
+
 def format_depends_on(services: list) -> str:
     lines = []
     for service in services:
@@ -186,7 +200,8 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
             name=p["name"],
             image=p["image"],
             port=DEFAULT_PORT,
-            env=format_env_vars(p.get("env", {}))
+            env=format_env_vars(p.get("env", {})),
+            command=format_command(p["name"], p.get("solver")),
         )
         for p in participants
     ])

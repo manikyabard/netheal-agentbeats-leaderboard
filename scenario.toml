@@ -1,5 +1,6 @@
 [green_agent]
 agentbeats_id = "019bc450-9926-7f51-a195-3be6e03222e0"
+# Secrets should use ${VARIABLE_NAME} syntax so submitters can provide them.
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
@@ -8,15 +9,14 @@ env = {
 }
 
 [[participants]]
-agentbeats_id = "019bc478-3ed8-7871-8341-d905ff27a587"
-name = "netheal-solver-gpt5-high"
-solver = "gpt"
+# Leave blank in main; fill this in per run when triggering assessments.
+agentbeats_id = ""
+name = "netheal-solver"
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
-  AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT_GPT5_HIGH}",
-  AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}",
-  REASONING_EFFORT = "high"
+  AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
+  AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}"
 }
 
 [config]
@@ -28,3 +28,4 @@ topology_types = ["star", "mesh", "hierarchical"]
 timeout_seconds = 300
 seed = 1234
 enable_user_hints = true
+# rerun: 2026-01-16

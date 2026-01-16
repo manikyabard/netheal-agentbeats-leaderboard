@@ -29,7 +29,7 @@ env = {
 }
 
 [config]
-num_episodes = 5
+num_episodes = 1
 min_devices = 3
 max_devices = 15
 max_episode_steps = 100

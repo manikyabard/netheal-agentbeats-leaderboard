@@ -39,3 +39,5 @@ seed = 1234
 enable_user_hints = true
 # rerun: purple-latest
 # rerun: bedrock-healthcheck-fix
+
+# rerun: jsonrpc-support

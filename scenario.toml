@@ -1,16 +1,30 @@
 [green_agent]
-agentbeats_id = ""
-env = { API_KEY = "${GITHUB_SECRET_NAME}", LOG_LEVEL = "INFO" }
+agentbeats_id = "019bc450-9926-7f51-a195-3be6e03222e0"
+# Secrets should use ${VARIABLE_NAME} syntax so submitters can provide them.
+env = {
+  AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
+  AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
+  AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
+  AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}"
+}
 
 [[participants]]
+# Leave blank in main; fill this in per run when triggering assessments.
 agentbeats_id = ""
-name = "role_1_name"
-env = {}
-
-[[participants]]
-agentbeats_id = ""
-name = "role_2_name"
-env = {}
+name = "netheal-solver"
+env = {
+  AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
+  AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
+  AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
+  AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}"
+}
 
 [config]
-# Add your assessment config here
+num_episodes = 5
+min_devices = 3
+max_devices = 15
+max_episode_steps = 100
+topology_types = ["star", "mesh", "hierarchical"]
+timeout_seconds = 300
+seed = 1234
+enable_user_hints = true

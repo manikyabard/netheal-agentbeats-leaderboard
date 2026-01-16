@@ -37,3 +37,4 @@ topology_types = ["star", "mesh", "hierarchical"]
 timeout_seconds = 300
 seed = 1234
 enable_user_hints = true
+# rerun: bedrock-healthcheck-fix

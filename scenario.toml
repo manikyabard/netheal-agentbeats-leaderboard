@@ -42,7 +42,3 @@ topology_types = ["star", "mesh", "hierarchical"]
 timeout_seconds = 300
 seed = 1234
 enable_user_hints = true
-# rerun: purple-latest
-# rerun: bedrock-healthcheck-fix
-
-# rerun: mcp-advertised-host-2026-01-16

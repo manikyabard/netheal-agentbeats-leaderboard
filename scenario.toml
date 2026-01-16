@@ -1,6 +1,5 @@
 [green_agent]
 agentbeats_id = "019bc450-9926-7f51-a195-3be6e03222e0"
-# Secrets should use ${VARIABLE_NAME} syntax so submitters can provide them.
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
@@ -9,14 +8,14 @@ env = {
 }
 
 [[participants]]
-# Leave blank in main; fill this in per run when triggering assessments.
-agentbeats_id = ""
-name = "netheal-solver"
+agentbeats_id = "PURPLE_AGENT_ID"
+name = "netheal-solver-gpt5-high"
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
-  AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
-  AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}"
+  AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT_GPT5_HIGH}",
+  AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}",
+  REASONING_EFFORT = "high"
 }
 
 [config]

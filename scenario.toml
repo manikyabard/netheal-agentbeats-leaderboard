@@ -1,6 +1,5 @@
 [green_agent]
 agentbeats_id = "019bc450-9926-7f51-a195-3be6e03222e0"
-# Secrets should use ${VARIABLE_NAME} syntax so submitters can provide them.
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
@@ -9,12 +8,12 @@ env = {
 }
 
 [[participants]]
-# Leave blank in main; fill this in per run when triggering assessments.
-agentbeats_id = ""
-name = "netheal-solver"
+agentbeats_id = "019bc478-3ed8-7871-8341-d905ff27a587"
+name = "netheal-solver-bedrock-claude"
+solver = "gpt"
 env = {
-  LLM_PROVIDER = "${LLM_PROVIDER}",
-  LLM_MODEL = "${LLM_MODEL}",
+  LLM_PROVIDER = "bedrock",
+  LLM_MODEL = "${BEDROCK_MODEL_ID}",
   OPENAI_API_KEY = "${OPENAI_API_KEY}",
   OPENAI_MODEL = "${OPENAI_MODEL}",
   OPENAI_BASE_URL = "${OPENAI_BASE_URL}",
@@ -26,7 +25,7 @@ env = {
   ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}",
   ANTHROPIC_MODEL = "${ANTHROPIC_MODEL}",
   ANTHROPIC_API_URL = "${ANTHROPIC_API_URL}",
-  REASONING_EFFORT = "${REASONING_EFFORT}",
+  REASONING_EFFORT = "high"
 }
 
 [config]

@@ -195,6 +195,10 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
 
     participant_names = [p["name"] for p in participants]
 
+    green_env = dict(green.get("env", {}))
+    green_env.setdefault("MCP_SERVER_HOST", "0.0.0.0")
+    green_env.setdefault("MCP_SERVER_ADVERTISED_HOST", "green-agent")
+
     participant_services = "\n".join([
         PARTICIPANT_TEMPLATE.format(
             name=p["name"],
@@ -211,7 +215,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
         green_port=DEFAULT_PORT,
-        green_env=format_env_vars(green.get("env", {})),
+        green_env=format_env_vars(green_env),
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
         client_depends=format_depends_on(all_services)

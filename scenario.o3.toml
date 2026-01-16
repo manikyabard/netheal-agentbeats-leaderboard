@@ -10,6 +10,7 @@ env = {
 [[participants]]
 agentbeats_id = "PURPLE_AGENT_ID"
 name = "netheal-solver-o3"
+solver = "gpt"
 env = {
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",

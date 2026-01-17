@@ -46,3 +46,7 @@ topology_types = ["star", "mesh", "hierarchical"]
 timeout_seconds = 600
 seed = 1234
 enable_user_hints = true
+episode_concurrency = 8
+episode_retry_limit = 5
+max_timeouts = 50
+max_errors = 0

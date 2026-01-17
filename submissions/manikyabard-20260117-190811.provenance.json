@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "manikya/netheal-green-agent@sha256:9ff418b609c506af7014ba7e76c54e33112d21dba7d9ea7dd5f1a07038206c7b",
+    "netheal-solver-bedrock-claude": "manikya/netheal-purple-agent@sha256:54d799f130cfbee3a268a52594813e10e0bae296c8b018363bb5f3cfabcf7ddf",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-17T19:08:11Z",
+  "github_actions": {
+    "run_url": "https://github.com/manikyabard/netheal-agentbeats-leaderboard/actions/runs/21074821052",
+    "run_logs_url": "https://api.github.com/repos/manikyabard/netheal-agentbeats-leaderboard/actions/runs/21074821052/logs",
+    "ref": "refs/heads/run-bedrock-claude",
+    "sha": "793519acf390c50d529c4903c0ef36081800a114",
+    "repository_url": "https://github.com/manikyabard/netheal-agentbeats-leaderboard",
+    "workflow_ref": "manikyabard/netheal-agentbeats-leaderboard/.github/workflows/run-scenario.yml@refs/heads/run-bedrock-claude",
+    "workflow_sha": "793519acf390c50d529c4903c0ef36081800a114"
+  }
+}

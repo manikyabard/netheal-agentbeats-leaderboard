@@ -33,11 +33,12 @@ env = {
   ANTHROPIC_API_URL = "${ANTHROPIC_API_URL}",
   REASONING_EFFORT = "high",
   MCP_DEBUG = "1",
-  MCP_HTTP_FALLBACK = "0"
+  MCP_HTTP_FALLBACK = "0",
+  LLM_TEMPERATURE = "0"
 }
 
 [config]
-num_episodes = 1
+num_episodes = 50
 min_devices = 3
 max_devices = 15
 max_episode_steps = 100

@@ -1,0 +1,123 @@
+{
+  "participants": {
+    "netheal-solver-bedrock-claude": "019bc478-3ed8-7871-8341-d905ff27a587"
+  },
+  "results": [
+    {
+      "task_id": "394b55aa-cb43-46d0-b18d-f0de0a3e606c",
+      "status": "completed",
+      "summary": {
+        "episodes": {
+          "episodes": 1,
+          "diagnosis_success_rate": 0.0,
+          "fault_type_macro_f1": 0.0,
+          "avg_steps": 28.0,
+          "avg_total_reward": -27.800000000000004,
+          "normalized_steps": 0.28,
+          "composite_episode_score": -27.800000000000004,
+          "tool_cost_index": 0.17857142857142858,
+          "topology_coverage": 1.0073529411764706,
+          "evidence_sufficiency": 0.08333333333333333,
+          "redundancy_rate": 0.0,
+          "avg_wall_time_seconds": 97.67078566551208,
+          "confusion_matrix": {
+            "performance_degradation": {
+              "misconfiguration": 1
+            }
+          }
+        },
+        "timeouts": 0,
+        "errors": []
+      },
+      "artifacts": [
+        {
+          "label": "aaa_metrics",
+          "mime_type": "application/json",
+          "data": {
+            "participants": {
+              "solver": "http://netheal-solver-bedrock-claude:9009/",
+              "evaluator": "netheal_green_mcp_v1"
+            },
+            "results": [
+              {
+                "pass": false,
+                "pass_rate": 0.0,
+                "time_used": 97.67078566551208,
+                "steps": 28,
+                "max_score": 100.0,
+                "score": -27.800000000000004,
+                "network_size": 15,
+                "tool_cost": 25.0,
+                "tool_cost_normalized": 0.17857142857142858,
+                "topology_coverage": 1.0073529411764706,
+                "evidence_sufficiency": 0.08333333333333333,
+                "ground_truth_type": "performance_degradation",
+                "ground_truth_location": "device_2->device_0",
+                "predicted_type": "misconfiguration",
+                "predicted_location": "device_8"
+              }
+            ],
+            "summary": {
+              "pass_rate": 0.0,
+              "time_used": 97.67078566551208,
+              "max_score": 100.0,
+              "total_episodes": 1,
+              "composite_score": -27.800000000000004,
+              "diagnosis_success_rate": 0.0,
+              "fault_type_macro_f1": 0.0,
+              "avg_total_reward": -27.800000000000004,
+              "avg_steps": 28.0,
+              "normalized_steps": 0.28,
+              "tool_cost_index": 0.17857142857142858,
+              "topology_coverage": 1.0073529411764706
+            },
+            "metrics": {
+              "episodes": 1,
+              "diagnosis_success_rate": 0.0,
+              "fault_type_macro_f1": 0.0,
+              "avg_steps": 28.0,
+              "avg_total_reward": -27.800000000000004,
+              "normalized_steps": 0.28,
+              "composite_episode_score": -27.800000000000004,
+              "tool_cost_index": 0.17857142857142858,
+              "topology_coverage": 1.0073529411764706,
+              "evidence_sufficiency": 0.08333333333333333,
+              "redundancy_rate": 0.0,
+              "avg_wall_time_seconds": 97.67078566551208,
+              "confusion_matrix": {
+                "performance_degradation": {
+                  "misconfiguration": 1
+                }
+              }
+            },
+            "generated_at": "2026-01-17T19:08:09.965288+00:00",
+            "metadata": {
+              "task_id": "394b55aa-cb43-46d0-b18d-f0de0a3e606c",
+              "config": {
+                "num_episodes": 1,
+                "min_devices": 3,
+                "max_devices": 15,
+                "max_episode_steps": 100,
+                "topology_types": [
+                  "star",
+                  "mesh",
+                  "hierarchical"
+                ],
+                "seed": 1234,
+                "timeout_seconds": 300,
+                "enable_user_hints": true,
+                "reward_scaling_factor": 10.0,
+                "extra_env_options": {}
+              }
+            }
+          }
+        }
+      ],
+      "metadata": {
+        "participants": [
+          "netheal-solver-bedrock-claude"
+        ]
+      }
+    }
+  ]
+}

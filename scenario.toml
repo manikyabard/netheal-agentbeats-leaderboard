@@ -50,5 +50,6 @@ episode_concurrency = 8
 episode_retry_limit = 5
 max_timeouts = 50
 max_errors = 0
+extra_env_options = { hint_provider_mode = "heuristic" }
 # retrigger run 2
 # retrigger run 1

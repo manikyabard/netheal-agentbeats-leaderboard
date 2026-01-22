@@ -46,6 +46,12 @@ topology_types = ["star", "mesh", "hierarchical"]
 timeout_seconds = 1800
 seed = 1234
 enable_user_hints = true
+use_snapshots = false
+snapshot_path = "snapshots/v1/"
+# snapshot_url = "https://github.com/.../snapshots-v1.tar.gz"
+fault_sampling_strategy = "uniform"
+fault_weights = { device_failure = 0.25, link_failure = 0.25, misconfiguration = 0.25, performance_degradation = 0.25 }
+latency_multiplier_range = [10.0, 20.0]
 episode_concurrency = 8
 episode_retry_limit = 20
 max_timeouts = 100

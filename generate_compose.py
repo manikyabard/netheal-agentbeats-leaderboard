@@ -63,7 +63,7 @@ services:
     platform: linux/amd64
     container_name: green-agent
     command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://green-agent:{green_port}"]
-    environment:{green_env}
+    environment:{green_env}{green_volumes}
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{green_port}/.well-known/agent-card.json')"]
       interval: 5s
@@ -166,6 +166,13 @@ def format_env_vars(env_dict: dict[str, Any]) -> str:
     lines = [f"      - {key}={value}" for key, value in env_vars.items()]
     return "\n" + "\n".join(lines)
 
+def format_volume_block(volumes: list[str]) -> str:
+    if not volumes:
+        return ""
+    lines = ["    volumes:"]
+    lines.extend(f"      - {volume}" for volume in volumes)
+    return "\n" + "\n".join(lines)
+
 
 def format_command(name: str, solver: str | None = None) -> str:
     command = [
@@ -189,15 +196,47 @@ def format_depends_on(services: list) -> str:
     return "\n" + "\n".join(lines)
 
 
-def generate_docker_compose(scenario: dict[str, Any]) -> str:
+def _resolve_snapshot_volumes(
+    config: dict[str, Any],
+    scenario_path: Path,
+) -> list[str]:
+    if not config.get("use_snapshots"):
+        return []
+    snapshot_path = config.get("snapshot_path")
+    if not snapshot_path:
+        return []
+
+    snapshot_path_obj = Path(snapshot_path)
+    if snapshot_path_obj.is_absolute():
+        host_base = snapshot_path_obj
+        container_base = snapshot_path_obj
+    else:
+        parts = snapshot_path_obj.parts
+        if not parts:
+            return []
+        host_base = (scenario_path.parent / parts[0]).resolve()
+        container_base = Path("/app") / parts[0]
+
+    if host_base.is_file():
+        host_base = host_base.parent
+        container_base = container_base.parent
+
+    return [f"{host_base}:{container_base}:ro"]
+
+
+def generate_docker_compose(scenario: dict[str, Any], scenario_path: Path) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
+    config = scenario.get("config", {})
 
     participant_names = [p["name"] for p in participants]
 
     green_env = dict(green.get("env", {}))
     green_env.setdefault("MCP_SERVER_HOST", "0.0.0.0")
     green_env.setdefault("MCP_SERVER_ADVERTISED_HOST", "green-agent")
+    green_volumes = format_volume_block(
+        _resolve_snapshot_volumes(config, scenario_path)
+    )
 
     participant_services = "\n".join([
         PARTICIPANT_TEMPLATE.format(
@@ -216,6 +255,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
         green_image=green["image"],
         green_port=DEFAULT_PORT,
         green_env=format_env_vars(green_env),
+        green_volumes=green_volumes,
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
         client_depends=format_depends_on(all_services)
@@ -287,7 +327,7 @@ def main():
     scenario = parse_scenario(args.scenario)
 
     with open(COMPOSE_PATH, "w") as f:
-        f.write(generate_docker_compose(scenario))
+        f.write(generate_docker_compose(scenario, args.scenario))
 
     with open(A2A_SCENARIO_PATH, "w") as f:
         f.write(generate_a2a_scenario(scenario))

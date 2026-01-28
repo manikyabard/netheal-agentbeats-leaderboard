@@ -57,4 +57,4 @@ episode_retry_limit = 20
 max_timeouts = 100
 max_errors = 100
 extra_env_options = { hint_provider_mode = "heuristic" }
-# using v2 snapshots with 100 episodes
+# using v2 snapshots with 100 episodes# trigger: test improved logging

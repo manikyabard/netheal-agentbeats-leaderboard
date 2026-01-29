@@ -61,11 +61,14 @@ env = {
 use_snapshots = true
 snapshot_path = "snapshots/v1/"
 
+# Number of episodes to run (required even in snapshot mode)
+# Note: cycles through snapshots if num_episodes > snapshot_count
+num_episodes = 100
+
 # =============================================================================
 # [IGNORED IN SNAPSHOT MODE] - Episode generation settings
 # These only apply when use_snapshots = false
 # =============================================================================
-# num_episodes = 50
 # min_devices = 3
 # max_devices = 15
 # seed = 1234

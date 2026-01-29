@@ -61,8 +61,7 @@ env = {
 use_snapshots = true
 snapshot_path = "snapshots/v1/"
 
-# Number of episodes to run
-# When use_snapshots=true, auto-detected from snapshot count (can be omitted)
+# Number of episodes to run (auto-detected from snapshot count when use_snapshots=true)
 # num_episodes = 100
 
 # =============================================================================

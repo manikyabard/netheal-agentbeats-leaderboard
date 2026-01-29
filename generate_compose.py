@@ -262,7 +262,46 @@ def generate_docker_compose(scenario: dict[str, Any], scenario_path: Path) -> st
     )
 
 
-def generate_a2a_scenario(scenario: dict[str, Any]) -> str:
+def _auto_detect_num_episodes(config: dict[str, Any], scenario_path: Path) -> int | None:
+    """Auto-detect num_episodes from snapshot count when use_snapshots=true."""
+    if not config.get("use_snapshots"):
+        return None
+    snapshot_path = config.get("snapshot_path")
+    if not snapshot_path:
+        return None
+
+    # Resolve snapshot path relative to scenario file
+    snapshot_path_obj = Path(snapshot_path)
+    if not snapshot_path_obj.is_absolute():
+        snapshot_path_obj = scenario_path.parent / snapshot_path_obj
+
+    if not snapshot_path_obj.exists():
+        return None
+
+    # Try manifest.json first (authoritative source)
+    manifest_path = snapshot_path_obj / "manifest.json"
+    if manifest_path.exists():
+        try:
+            import json
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            snapshots = manifest.get("snapshots", [])
+            if snapshots:
+                return len(snapshots)
+        except Exception:
+            pass
+
+    # Fallback: count UUID-named JSON files (exclude manifest.json, episodes.jsonl)
+    snapshot_files = [
+        f for f in snapshot_path_obj.glob("*.json")
+        if f.name not in ("manifest.json",) and len(f.stem) == 36  # UUID length
+    ]
+    if not snapshot_files:
+        return None
+
+    return len(snapshot_files)
+
+
+def generate_a2a_scenario(scenario: dict[str, Any], scenario_path: Path) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
 
@@ -277,7 +316,15 @@ def generate_a2a_scenario(scenario: dict[str, Any]) -> str:
             lines.append(f"agentbeats_id = \"{p['agentbeats_id']}\"")
         participant_lines.append("\n".join(lines) + "\n")
 
-    config_section = scenario.get("config", {})
+    config_section = scenario.get("config", {}).copy()
+
+    # Auto-detect num_episodes from snapshots if not specified
+    if "num_episodes" not in config_section:
+        detected = _auto_detect_num_episodes(config_section, scenario_path)
+        if detected:
+            print(f"Auto-detected num_episodes={detected} from snapshots")
+            config_section["num_episodes"] = detected
+
     config_lines = [tomli_w.dumps({"config": config_section})]
 
     return A2A_SCENARIO_TEMPLATE.format(
@@ -330,7 +377,7 @@ def main():
         f.write(generate_docker_compose(scenario, args.scenario))
 
     with open(A2A_SCENARIO_PATH, "w") as f:
-        f.write(generate_a2a_scenario(scenario))
+        f.write(generate_a2a_scenario(scenario, args.scenario))
 
     env_content = generate_env_file(scenario)
     if env_content:

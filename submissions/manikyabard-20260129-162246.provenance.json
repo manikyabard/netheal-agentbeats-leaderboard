@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "manikya/netheal-green-agent@sha256:ce298f7971e46b95a67e9f6e8bab3cc0cd0f8ea8de0c4cc7ec4c9258b1ff0de8",
+    "netheal-solver-bedrock-claude": "manikya/netheal-purple-agent@sha256:ca4989c8e369b163f13027eed029b38d27e2d48b4577357036d9394437d03833",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-29T16:22:46Z",
+  "github_actions": {
+    "run_url": "https://github.com/manikyabard/netheal-agentbeats-leaderboard/actions/runs/21485964497",
+    "run_logs_url": "https://api.github.com/repos/manikyabard/netheal-agentbeats-leaderboard/actions/runs/21485964497/logs",
+    "ref": "refs/heads/feature/snapshot-infrastructure",
+    "sha": "81c1bb623713347eeaec5bf21465c6ff5e2d32d4",
+    "repository_url": "https://github.com/manikyabard/netheal-agentbeats-leaderboard",
+    "workflow_ref": "manikyabard/netheal-agentbeats-leaderboard/.github/workflows/run-scenario.yml@refs/heads/feature/snapshot-infrastructure",
+    "workflow_sha": "81c1bb623713347eeaec5bf21465c6ff5e2d32d4"
+  }
+}

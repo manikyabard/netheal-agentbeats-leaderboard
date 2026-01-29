@@ -5,53 +5,85 @@ env = {
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
   AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
   AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}",
+  # Options: debug, info, warning, error
   MCP_SERVER_LOG_LEVEL = "warning"
 }
 
 [[participants]]
 agentbeats_id = "019bc478-3ed8-7871-8341-d905ff27a587"
 name = "netheal-solver-bedrock-claude"
-solver = "gpt"
+# solver = "gpt"  # Options: gpt, random (default: gpt)
 env = {
+  # Options: openai, azure, anthropic, bedrock
   LLM_PROVIDER = "bedrock",
   LLM_MODEL = "${BEDROCK_MODEL_ID}",
+
+  # OpenAI settings
   OPENAI_API_KEY = "${OPENAI_API_KEY}",
   OPENAI_MODEL = "${OPENAI_MODEL}",
   OPENAI_BASE_URL = "${OPENAI_BASE_URL}",
   OPENAI_ORG_ID = "${OPENAI_ORG_ID}",
+
+  # Azure OpenAI settings
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
   AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
   AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}",
+
+  # Anthropic settings
   ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}",
   ANTHROPIC_MODEL = "${ANTHROPIC_MODEL}",
   ANTHROPIC_API_URL = "${ANTHROPIC_API_URL}",
+
+  # AWS Bedrock settings
   AWS_REGION = "${AWS_REGION}",
   AWS_ACCESS_KEY_ID = "${AWS_ACCESS_KEY_ID}",
   AWS_SECRET_ACCESS_KEY = "${AWS_SECRET_ACCESS_KEY}",
   AWS_SESSION_TOKEN = "${AWS_SESSION_TOKEN}",
   BEDROCK_MODEL_ID = "${BEDROCK_MODEL_ID}",
-  REASONING_EFFORT = "high",
+
+  # Optional: reasoning effort for o1/o3 models
+  # Options: low, medium, high
+  # REASONING_EFFORT = "high",
+
   MCP_HTTP_FALLBACK = "0",
   LLM_TEMPERATURE = "0"
 }
 
 [config]
-num_episodes = 50
+# num_episodes is ignored when use_snapshots=true (reads from snapshot manifest)
+# num_episodes = 50
+
+# Network generation settings (ignored when use_snapshots=true)
 min_devices = 3
 max_devices = 15
 max_episode_steps = 100
+# Options: star, mesh, hierarchical, random
 topology_types = ["star", "mesh", "hierarchical"]
+
+# Timing
 timeout_seconds = 600
 seed = 1234
+
+# Hints
 enable_user_hints = true
+
+# Snapshot replay (for reproducible runs)
 use_snapshots = true
 snapshot_path = "snapshots/v1/"
+
+# Fault injection settings (ignored when use_snapshots=true)
+# Options: uniform, weighted
 fault_sampling_strategy = "uniform"
+# Fault types: device_failure, link_failure, misconfiguration, performance_degradation
 fault_weights = { device_failure = 0.25, link_failure = 0.25, misconfiguration = 0.25, performance_degradation = 0.25 }
 latency_multiplier_range = [10.0, 20.0]
+
+# Concurrency and retry settings
 episode_concurrency = 25
 episode_retry_limit = 3
 max_timeouts = 50
 max_errors = 50
+
+# Options for hint_provider_mode: heuristic, llm
 extra_env_options = { hint_provider_mode = "heuristic" }

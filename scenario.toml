@@ -13,7 +13,7 @@ env = {
 agentbeats_id = "019bc478-3ed8-7871-8341-d905ff27a587"
 name = "netheal-solver-bedrock-claude"
 # Solver type: "gpt" = LLM-based (uses LLM_PROVIDER below), "dummy" = baseline/random
-# solver = "gpt"  # default: gpt
+solver = "gpt"
 env = {
   # LLM Provider - determines which API to use
   # Options: openai, azure, anthropic, bedrock

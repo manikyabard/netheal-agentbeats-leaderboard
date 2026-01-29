@@ -83,14 +83,13 @@ snapshot_path = "snapshots/v1/"
 # Runtime settings (always apply)
 # =============================================================================
 max_episode_steps = 100
-timeout_seconds = 600
+timeout_seconds = 1200
 enable_user_hints = true
 
 # Concurrency and retry settings
-episode_concurrency = 25
-episode_retry_limit = 3
-max_timeouts = 50
-max_errors = 50
+# Lower concurrency reduces connection timeouts and LLM API rate limit issues
+episode_concurrency = 10
+episode_retry_limit = 10
 
 # Hint provider mode
 # Options: heuristic, llm

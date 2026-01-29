@@ -12,37 +12,39 @@ env = {
 [[participants]]
 agentbeats_id = "019bc478-3ed8-7871-8341-d905ff27a587"
 name = "netheal-solver-bedrock-claude"
-# solver = "gpt"  # Options: gpt, random (default: gpt)
+# Solver type: "gpt" = LLM-based (uses LLM_PROVIDER below), "dummy" = baseline/random
+# solver = "gpt"  # default: gpt
 env = {
+  # LLM Provider - determines which API to use
   # Options: openai, azure, anthropic, bedrock
   LLM_PROVIDER = "bedrock",
   LLM_MODEL = "${BEDROCK_MODEL_ID}",
 
-  # OpenAI settings
+  # OpenAI settings (when LLM_PROVIDER = "openai")
   OPENAI_API_KEY = "${OPENAI_API_KEY}",
   OPENAI_MODEL = "${OPENAI_MODEL}",
   OPENAI_BASE_URL = "${OPENAI_BASE_URL}",
   OPENAI_ORG_ID = "${OPENAI_ORG_ID}",
 
-  # Azure OpenAI settings
+  # Azure OpenAI settings (when LLM_PROVIDER = "azure")
   AZURE_OPENAI_API_KEY = "${AZURE_OPENAI_API_KEY}",
   AZURE_OPENAI_ENDPOINT = "${AZURE_OPENAI_ENDPOINT}",
   AZURE_OPENAI_DEPLOYMENT = "${AZURE_OPENAI_DEPLOYMENT}",
   AZURE_OPENAI_API_VERSION = "${AZURE_OPENAI_API_VERSION}",
 
-  # Anthropic settings
+  # Anthropic settings (when LLM_PROVIDER = "anthropic")
   ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}",
   ANTHROPIC_MODEL = "${ANTHROPIC_MODEL}",
   ANTHROPIC_API_URL = "${ANTHROPIC_API_URL}",
 
-  # AWS Bedrock settings
+  # AWS Bedrock settings (when LLM_PROVIDER = "bedrock")
   AWS_REGION = "${AWS_REGION}",
   AWS_ACCESS_KEY_ID = "${AWS_ACCESS_KEY_ID}",
   AWS_SECRET_ACCESS_KEY = "${AWS_SECRET_ACCESS_KEY}",
   AWS_SESSION_TOKEN = "${AWS_SESSION_TOKEN}",
   BEDROCK_MODEL_ID = "${BEDROCK_MODEL_ID}",
 
-  # Optional: reasoning effort for o1/o3 models
+  # Reasoning effort for o1/o3 models (optional)
   # Options: low, medium, high
   # REASONING_EFFORT = "high",
 
@@ -51,33 +53,36 @@ env = {
 }
 
 [config]
-# num_episodes is ignored when use_snapshots=true (reads from snapshot manifest)
-# num_episodes = 50
-
-# Network generation settings (ignored when use_snapshots=true)
-min_devices = 3
-max_devices = 15
-max_episode_steps = 100
-# Options: star, mesh, hierarchical, random
-topology_types = ["star", "mesh", "hierarchical"]
-
-# Timing
-timeout_seconds = 600
-seed = 1234
-
-# Hints
-enable_user_hints = true
-
-# Snapshot replay (for reproducible runs)
+# =============================================================================
+# SNAPSHOT MODE (use_snapshots = true)
+# When enabled, episodes are replayed from pre-generated snapshots for
+# reproducibility. Settings marked [IGNORED IN SNAPSHOT MODE] have no effect.
+# =============================================================================
 use_snapshots = true
 snapshot_path = "snapshots/v1/"
 
-# Fault injection settings (ignored when use_snapshots=true)
+# =============================================================================
+# [IGNORED IN SNAPSHOT MODE] - Episode generation settings
+# These only apply when use_snapshots = false
+# =============================================================================
+# num_episodes = 50
+# min_devices = 3
+# max_devices = 15
+# seed = 1234
+# Options: star, mesh, hierarchical, random
+# topology_types = ["star", "mesh", "hierarchical"]
 # Options: uniform, weighted
-fault_sampling_strategy = "uniform"
+# fault_sampling_strategy = "uniform"
 # Fault types: device_failure, link_failure, misconfiguration, performance_degradation
-fault_weights = { device_failure = 0.25, link_failure = 0.25, misconfiguration = 0.25, performance_degradation = 0.25 }
-latency_multiplier_range = [10.0, 20.0]
+# fault_weights = { device_failure = 0.25, link_failure = 0.25, misconfiguration = 0.25, performance_degradation = 0.25 }
+# latency_multiplier_range = [10.0, 20.0]
+
+# =============================================================================
+# Runtime settings (always apply)
+# =============================================================================
+max_episode_steps = 100
+timeout_seconds = 600
+enable_user_hints = true
 
 # Concurrency and retry settings
 episode_concurrency = 25
@@ -85,5 +90,6 @@ episode_retry_limit = 3
 max_timeouts = 50
 max_errors = 50
 
-# Options for hint_provider_mode: heuristic, llm
+# Hint provider mode
+# Options: heuristic, llm
 extra_env_options = { hint_provider_mode = "heuristic" }

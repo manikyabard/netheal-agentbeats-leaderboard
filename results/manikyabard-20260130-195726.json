@@ -1,0 +1,437 @@
+{
+  "participants": {
+    "netheal-solver-bedrock-claude": "019bc478-3ed8-7871-8341-d905ff27a587"
+  },
+  "results": [
+    {
+      "task_id": "75167de1-1eed-4c3a-8207-0a95bcf092f6",
+      "status": "completed",
+      "summary": {
+        "episodes": {
+          "episodes": 10,
+          "diagnosis_success_rate": 0.8795180722891566,
+          "fault_type_macro_f1": 0.7,
+          "location_accuracy": 0.8795180722891566,
+          "avg_steps": 23.337349397590362,
+          "avg_steps_per_device": 2.7951807228915664,
+          "avg_total_reward": 15.54578313253012,
+          "normalized_steps": 0.23337349397590362,
+          "composite_episode_score": 15.54578313253012,
+          "tool_cost_index": 0.18398819100825725,
+          "tool_error_rate": 0.03757288895843112,
+          "topology_coverage": 0.8469175402910344,
+          "evidence_sufficiency": 0.24539558423894398,
+          "redundancy_rate": 0.0,
+          "cost_efficiency": 0.7460168929943419,
+          "avg_wall_time_seconds": 455.3662225484848,
+          "confusion_matrix": {
+            "device_failure": {
+              "device_failure": 3
+            },
+            "misconfiguration": {
+              "link_failure": 2
+            },
+            "performance_degradation": {
+              "performance_degradation": 1
+            },
+            "link_failure": {
+              "link_failure": 4
+            }
+          },
+          "per_fault_type": {
+            "device_failure": {
+              "episodes": 3,
+              "success_rate": 1.0,
+              "avg_steps": 18.0,
+              "location_accuracy": 1.0
+            },
+            "link_failure": {
+              "episodes": 4,
+              "success_rate": 1.0,
+              "avg_steps": 27.5,
+              "location_accuracy": 1.0
+            },
+            "misconfiguration": {
+              "episodes": 2,
+              "success_rate": 0.0,
+              "avg_steps": 22.0,
+              "location_accuracy": 0.0
+            },
+            "performance_degradation": {
+              "episodes": 1,
+              "success_rate": 1.0,
+              "avg_steps": 24.0,
+              "location_accuracy": 1.0
+            }
+          }
+        },
+        "timeouts": 0,
+        "timed_out_episodes": [],
+        "errors": [],
+        "error_episodes": [],
+        "retries_used": 0,
+        "episodes_retried": 0
+      },
+      "artifacts": [
+        {
+          "label": "aaa_metrics",
+          "mime_type": "application/json",
+          "data": {
+            "participants": {
+              "solver": "http://netheal-solver-bedrock-claude:9009/",
+              "evaluator": "netheal_green_mcp_v1"
+            },
+            "results": [
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 218.32048916816711,
+                "steps": 13,
+                "steps_per_device": 1.625,
+                "max_score": 100.0,
+                "score": 16.7,
+                "network_size": 8,
+                "tool_cost": 10.0,
+                "tool_cost_normalized": 0.15384615384615385,
+                "cost_efficiency": 0.8666666666666667,
+                "topology_coverage": 0.7857142857142857,
+                "evidence_sufficiency": 0.2727272727272727,
+                "location_correct": true,
+                "ground_truth_type": "device_failure",
+                "ground_truth_location": "edge_4",
+                "predicted_type": "device_failure",
+                "predicted_location": "edge_4",
+                "episode_seed": 1330,
+                "scenario_fingerprint": "4cf273f04d031c2e665463cdcdf2d6c3c99f04660657f0bdc081a81cce44fbc4",
+                "snapshot_id": "0283628d-f76d-4f49-87ae-41925030db96"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 248.62374663352966,
+                "steps": 15,
+                "steps_per_device": 1.875,
+                "max_score": 100.0,
+                "score": 16.5,
+                "network_size": 8,
+                "tool_cost": 12.0,
+                "tool_cost_normalized": 0.16,
+                "cost_efficiency": 0.8620689655172414,
+                "topology_coverage": 0.8214285714285714,
+                "evidence_sufficiency": 0.16666666666666666,
+                "location_correct": true,
+                "ground_truth_type": "device_failure",
+                "ground_truth_location": "device_4",
+                "predicted_type": "device_failure",
+                "predicted_location": "device_4",
+                "episode_seed": 1290,
+                "scenario_fingerprint": "374aa5d9307eef611be647e2303393dbaecf05ad4cb0ffcc455af276d22579ff",
+                "snapshot_id": "0555d3a1-67c6-4583-b9d5-7aeb222e4d6b"
+              },
+              {
+                "pass": false,
+                "pass_rate": 0.0,
+                "time_used": 433.18214750289917,
+                "steps": 21,
+                "steps_per_device": 4.2,
+                "max_score": 100.0,
+                "score": 2.4,
+                "network_size": 5,
+                "tool_cost": 24.0,
+                "tool_cost_normalized": 0.22857142857142856,
+                "cost_efficiency": 0.0,
+                "topology_coverage": 0.75,
+                "evidence_sufficiency": 0.42857142857142855,
+                "location_correct": false,
+                "ground_truth_type": "misconfiguration",
+                "ground_truth_location": "device_0",
+                "predicted_type": "link_failure",
+                "predicted_location": "device_0->device_3",
+                "episode_seed": 1250,
+                "scenario_fingerprint": "18354f17e514e904e06fcc11fe52e57c227da6231be817817feca9dda0a9687e",
+                "snapshot_id": "08dce84a-fd28-47d4-aa1d-d923bf4529d1"
+              },
+              {
+                "pass": false,
+                "pass_rate": 0.0,
+                "time_used": 485.0494375228882,
+                "steps": 23,
+                "steps_per_device": 4.6,
+                "max_score": 100.0,
+                "score": 2.1999999999999997,
+                "network_size": 5,
+                "tool_cost": 24.0,
+                "tool_cost_normalized": 0.20869565217391303,
+                "cost_efficiency": 0.0,
+                "topology_coverage": 1.375,
+                "evidence_sufficiency": 0.3125,
+                "location_correct": false,
+                "ground_truth_type": "misconfiguration",
+                "ground_truth_location": "L1_D0",
+                "predicted_type": "link_failure",
+                "predicted_location": "L1_D0->L2_D0",
+                "episode_seed": 1285,
+                "scenario_fingerprint": "7d7ca7e81582a2f3ab96dc42545da9a03dd67eec46505ac1a8011f97a69a8e95",
+                "snapshot_id": "0f17a124-716a-44b5-b8e6-8f4bdbe1d374"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 495.1961553096771,
+                "steps": 24,
+                "steps_per_device": 1.6,
+                "max_score": 100.0,
+                "score": 22.599999999999998,
+                "network_size": 15,
+                "tool_cost": 20.0,
+                "tool_cost_normalized": 0.16666666666666666,
+                "cost_efficiency": 0.8571428571428571,
+                "topology_coverage": 0.75,
+                "evidence_sufficiency": 0.2,
+                "location_correct": true,
+                "ground_truth_type": "performance_degradation",
+                "ground_truth_location": "device_2->device_0",
+                "predicted_type": "performance_degradation",
+                "predicted_location": "device_0->device_2",
+                "episode_seed": 1234,
+                "scenario_fingerprint": "9c1bed56b1c59255b627ace6215cb17944a26874215bd5975dee8b2b93e8d326",
+                "snapshot_id": "0f3393c8-6cc3-4016-a758-d0b60ffed2db"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 505.9269874095917,
+                "steps": 26,
+                "steps_per_device": 2.888888888888889,
+                "max_score": 100.0,
+                "score": 16.4,
+                "network_size": 9,
+                "tool_cost": 23.0,
+                "tool_cost_normalized": 0.17692307692307693,
+                "cost_efficiency": 0.8496732026143791,
+                "topology_coverage": 0.75,
+                "evidence_sufficiency": 0.3333333333333333,
+                "location_correct": true,
+                "ground_truth_type": "device_failure",
+                "ground_truth_location": "device_0",
+                "predicted_type": "device_failure",
+                "predicted_location": "device_0",
+                "episode_seed": 1329,
+                "scenario_fingerprint": "f26afcf90164fa5bec8c198be137fa9b1fa1f870aa28134091582eb12f8c6a72",
+                "snapshot_id": "0a5c44b3-3943-4b27-8329-90a9c9463d83"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 524.5520882606506,
+                "steps": 24,
+                "steps_per_device": 2.6666666666666665,
+                "max_score": 100.0,
+                "score": 16.599999999999998,
+                "network_size": 9,
+                "tool_cost": 22.5,
+                "tool_cost_normalized": 0.1875,
+                "cost_efficiency": 0.8421052631578947,
+                "topology_coverage": 0.8636363636363636,
+                "evidence_sufficiency": 0.21052631578947367,
+                "location_correct": true,
+                "ground_truth_type": "link_failure",
+                "ground_truth_location": "device_7->device_8",
+                "predicted_type": "link_failure",
+                "predicted_location": "device_7->device_8",
+                "episode_seed": 1255,
+                "scenario_fingerprint": "10a313f8592d54b99e0e64269eb18b461598a96cf934a4d1e4837a651e1a5584",
+                "snapshot_id": "07db8f5e-e6f3-4345-9016-e81ce6b8a5ec"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 524.7993154525757,
+                "steps": 25,
+                "steps_per_device": 2.7777777777777777,
+                "max_score": 100.0,
+                "score": 16.499999999999996,
+                "network_size": 9,
+                "tool_cost": 27.0,
+                "tool_cost_normalized": 0.216,
+                "cost_efficiency": 0.8223684210526316,
+                "topology_coverage": 0.8,
+                "evidence_sufficiency": 0.2608695652173913,
+                "location_correct": true,
+                "ground_truth_type": "link_failure",
+                "ground_truth_location": "device_0->device_6",
+                "predicted_type": "link_failure",
+                "predicted_location": "device_0->device_6",
+                "episode_seed": 1301,
+                "scenario_fingerprint": "e4acf6cc50e7b015756dea9f01c76fba853f6bd4000833c5f6d58fe674d9671a",
+                "snapshot_id": "0307b569-27f1-434b-ad8a-0524761904d8"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 554.8447144031525,
+                "steps": 30,
+                "steps_per_device": 4.285714285714286,
+                "max_score": 100.0,
+                "score": 13.999999999999996,
+                "network_size": 7,
+                "tool_cost": 29.0,
+                "tool_cost_normalized": 0.19333333333333333,
+                "cost_efficiency": 0.8379888268156425,
+                "topology_coverage": 0.875,
+                "evidence_sufficiency": 0.14285714285714285,
+                "location_correct": true,
+                "ground_truth_type": "link_failure",
+                "ground_truth_location": "L1_D2->L0_D0",
+                "predicted_type": "link_failure",
+                "predicted_location": "L1_D2->L0_D0",
+                "episode_seed": 1312,
+                "scenario_fingerprint": "de6ce443e070b444f3b8e3b6f7d595144b3f2670233ede01b60eef1934d804ed",
+                "snapshot_id": "0d139ab5-2a73-4e75-957b-0f580bd19ae7"
+              },
+              {
+                "pass": true,
+                "pass_rate": 1.0,
+                "time_used": 563.1671438217163,
+                "steps": 31,
+                "steps_per_device": 3.875,
+                "max_score": 100.0,
+                "score": 14.899999999999997,
+                "network_size": 8,
+                "tool_cost": 29.0,
+                "tool_cost_normalized": 0.1870967741935484,
+                "cost_efficiency": 0.8423913043478262,
+                "topology_coverage": 0.9642857142857143,
+                "evidence_sufficiency": 0.23809523809523808,
+                "location_correct": true,
+                "ground_truth_type": "link_failure",
+                "ground_truth_location": "center->edge_5",
+                "predicted_type": "link_failure",
+                "predicted_location": "center->edge_5",
+                "episode_seed": 1283,
+                "scenario_fingerprint": "bd4ca296e5f4fce321c46157b4560a425cde64385e335faf8afa7edc098927e0",
+                "snapshot_id": "00bd290a-df64-46a6-8f06-f087bde022a9"
+              }
+            ],
+            "summary": {
+              "pass_rate": 0.8795180722891566,
+              "time_used": 455.3662225484848,
+              "max_score": 100.0,
+              "total_episodes": 10,
+              "composite_score": 15.54578313253012,
+              "diagnosis_success_rate": 0.8795180722891566,
+              "fault_type_macro_f1": 0.7,
+              "location_accuracy": 0.8795180722891566,
+              "avg_total_reward": 15.54578313253012,
+              "avg_steps": 23.337349397590362,
+              "avg_steps_per_device": 2.7951807228915664,
+              "normalized_steps": 0.23337349397590362,
+              "tool_cost_index": 0.18398819100825725,
+              "cost_efficiency": 0.7460168929943419,
+              "topology_coverage": 0.8469175402910344
+            },
+            "metrics": {
+              "episodes": 10,
+              "diagnosis_success_rate": 0.8795180722891566,
+              "fault_type_macro_f1": 0.7,
+              "location_accuracy": 0.8795180722891566,
+              "avg_steps": 23.337349397590362,
+              "avg_steps_per_device": 2.7951807228915664,
+              "avg_total_reward": 15.54578313253012,
+              "normalized_steps": 0.23337349397590362,
+              "composite_episode_score": 15.54578313253012,
+              "tool_cost_index": 0.18398819100825725,
+              "tool_error_rate": 0.03757288895843112,
+              "topology_coverage": 0.8469175402910344,
+              "evidence_sufficiency": 0.24539558423894398,
+              "redundancy_rate": 0.0,
+              "cost_efficiency": 0.7460168929943419,
+              "avg_wall_time_seconds": 455.3662225484848,
+              "confusion_matrix": {
+                "device_failure": {
+                  "device_failure": 3
+                },
+                "misconfiguration": {
+                  "link_failure": 2
+                },
+                "performance_degradation": {
+                  "performance_degradation": 1
+                },
+                "link_failure": {
+                  "link_failure": 4
+                }
+              },
+              "per_fault_type": {
+                "device_failure": {
+                  "episodes": 3,
+                  "success_rate": 1.0,
+                  "avg_steps": 18.0,
+                  "location_accuracy": 1.0
+                },
+                "link_failure": {
+                  "episodes": 4,
+                  "success_rate": 1.0,
+                  "avg_steps": 27.5,
+                  "location_accuracy": 1.0
+                },
+                "misconfiguration": {
+                  "episodes": 2,
+                  "success_rate": 0.0,
+                  "avg_steps": 22.0,
+                  "location_accuracy": 0.0
+                },
+                "performance_degradation": {
+                  "episodes": 1,
+                  "success_rate": 1.0,
+                  "avg_steps": 24.0,
+                  "location_accuracy": 1.0
+                }
+              }
+            },
+            "generated_at": "2026-01-30T19:57:25.182689+00:00",
+            "snapshot_version": "v1",
+            "metadata": {
+              "task_id": "75167de1-1eed-4c3a-8207-0a95bcf092f6",
+              "config": {
+                "num_episodes": 10,
+                "min_devices": 3,
+                "max_devices": 15,
+                "max_episode_steps": 100,
+                "topology_types": [
+                  "star",
+                  "mesh",
+                  "hierarchical"
+                ],
+                "seed": null,
+                "timeout_seconds": 1200,
+                "episode_concurrency": 10,
+                "episode_retry_limit": 10,
+                "fail_on_timeout": false,
+                "fail_on_error": false,
+                "max_timeouts": null,
+                "max_errors": null,
+                "enable_user_hints": true,
+                "reward_scaling_factor": 10.0,
+                "use_snapshots": true,
+                "auto_detect_num_episodes": false,
+                "snapshot_path": "snapshots/v1/",
+                "snapshot_url": null,
+                "fault_sampling_strategy": "uniform",
+                "fault_weights": {},
+                "latency_multiplier_range": null,
+                "extra_env_options": {
+                  "hint_provider_mode": "heuristic"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "metadata": {
+        "participants": [
+          "netheal-solver-bedrock-claude"
+        ]
+      }
+    }
+  ]
+}

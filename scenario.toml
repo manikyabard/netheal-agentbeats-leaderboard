@@ -61,8 +61,10 @@ env = {
 use_snapshots = true
 snapshot_path = "snapshots/v1/"
 
-# Number of episodes to run (auto-detected from snapshot count when use_snapshots=true)
+# Number of episodes to run
+# Set auto_detect_num_episodes = false to use this value instead of snapshot count
 num_episodes = 10
+auto_detect_num_episodes = false
 
 # =============================================================================
 # [IGNORED IN SNAPSHOT MODE] - Episode generation settings

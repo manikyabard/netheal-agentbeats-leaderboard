@@ -63,8 +63,8 @@ snapshot_path = "snapshots/v1/"
 
 # Number of episodes to run
 # Set auto_detect_num_episodes = false to use this value instead of snapshot count
-num_episodes = 10
-auto_detect_num_episodes = false
+# num_episodes = 10
+auto_detect_num_episodes = true
 
 # =============================================================================
 # [IGNORED IN SNAPSHOT MODE] - Episode generation settings
@@ -90,7 +90,7 @@ enable_user_hints = true
 
 # Concurrency and retry settings
 # Lower concurrency reduces connection timeouts and LLM API rate limit issues
-episode_concurrency = 10
+episode_concurrency = 5
 episode_retry_limit = 10
 
 # Allow timeouts without failing the assessment (results are still recorded)
